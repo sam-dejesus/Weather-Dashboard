@@ -1,0 +1,58 @@
+header{
+   background-image: linear-gradient(to right, rgb(67, 67, 239), rgb(57, 21, 186));
+   height: 100px;
+   width: 100%;
+   color: aliceblue;
+   font-size: 25px;
+   display: flex;
+   justify-content: center;
+   font-style: italic;
+}
+main{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+.city-info{
+    display: flex;
+    flex-direction: column;
+   
+  width: 40%;
+}
+.display{
+    
+    display: flex;
+    flex-direction: column;
+
+}
+#search-div{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    
+    margin-bottom: 20px;
+}
+input{
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+button{
+    height: 30px;
+    margin-bottom: 20px;
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 10px;
+}
+#btns{
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    
+}
+#overview{
+    border: 2px solid blueviolet;
+}
+#forecast{
+    border: 2px solid red;
+}
