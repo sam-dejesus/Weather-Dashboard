@@ -1,11 +1,21 @@
 var searchBtn = $('#search-btn');
-var citys = $('#btns');
+var citysBtn = $('#btns');
+
+
 
 searchBtn.click(function go(){
-var searchValue = $('#city-search').val();
+ var city = $('#city-search').val();   
+var url = "http://api.openweathermap.org/geo/1.0/direct?q= "+ city + "&limit=1&appid=78da9311b6649705d4159cf6966655ff"
+newBtn= $("<button>").text(city);
+citysBtn.append(newBtn);
 
-newBtn= $("<button>").text(searchValue);
-citys.append(newBtn);
-
+fetch(url)
+.then(response => response.json())
+.then(data => {
+ var {lat, lon } = data[0]
+ var latValue = lat;
+ var lonValue = lon;
+    console.log(latValue, lonValue);
+})
 
 })
