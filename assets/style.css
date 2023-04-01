@@ -1,3 +1,10 @@
+.head{
+    color: red;
+}
+.city-title{
+    display: flex;
+    flex-direction: row;
+}
 header{
    background-image: linear-gradient(to right, rgb(52, 52, 243), rgb(54, 25, 158), rgb(46, 1, 109));
    height: 100px;
@@ -23,6 +30,7 @@ main{
     
     display: flex;
     flex-direction: column;
+    width: 100%;
 
 }
 #search-div{
@@ -52,7 +60,15 @@ button{
 }
 #overview{
     border: 2px solid blueviolet;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 #forecast{
     border: 2px solid red;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+    
 }
