@@ -1,3 +1,4 @@
+// these are my global variables
 var searchBtn = $('#search-btn');
 var citysBtn = $('#btns');
 var nameData = $('#nameofcity')
@@ -26,13 +27,13 @@ for (var key in cityData) {
 var history = {
 
 }
-
+//when the submit button is clicked will call the go function
 searchBtn.click(function go(){
  var city = $('#city-search').val();   
 var url = "http://api.openweathermap.org/geo/1.0/direct?q= "+ city + "&limit=1&appid=78da9311b6649705d4159cf6966655ff"
 
 
-
+//uses the api to grab lat and lon values that are typed in city to get var weather to bring back wheather data
 fetch(url)
 .then(response => response.json())
 .then(data => {
@@ -43,8 +44,10 @@ fetch(url)
 fetch(weather)
 .then(response => response.json())
 .then(data => { 
+    
     forecast.empty()
     for (var i = 1; i <= 5; i++){
+        // loops through the 5 days of weather data to create a 5 day forecast and creates elements for the data to be displayed
     var icon = data.list[i].weather[0].icon;
     var cityName = data.city.name
     var temperature = data.list[i].main.temp;
@@ -60,7 +63,7 @@ fetch(weather)
     forecast.append(div)
 
 
-
+// current weather information that will be displayed
 iconData.attr("src", "http://openweathermap.org/img/wn/" + icon + ".png");
 nameData.text(cityName)
 tempData.text('Temp: '+ temperature)
@@ -74,10 +77,10 @@ nameData.append(h4)
 
 
 
-
+//buttons that are created when a city is typed
 var pastCityBtn = $("<button>").text(city)
 citysBtn.append(pastCityBtn)
-//
+// saves the name of the city that is typed into an arry in local storage
 cityData[cityName] = { name: cityName };
 localStorage.setItem('citydata', JSON.stringify(cityData));
 
@@ -88,7 +91,7 @@ pastCityBtn.click(() => weatherbtn(latValue, lonValue))
 })
 })
 
-
+// new buttons that are created when clicked will call this function that will display weather info for that city
 function weatherbtn(lat, lon){
     var weather = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&cnt=6&appid=78da9311b6649705d4159cf6966655ff"
     fetch(weather)
@@ -127,7 +130,7 @@ function weatherbtn(lat, lon){
 
 
 var button = $('button');
-
+// buttons that are created due to local storage when pressed will activate this function that will display the weather information for that city
 button.click(function recall() {
  var recallName = $(this).text()
  var recallUrl = "http://api.openweathermap.org/geo/1.0/direct?q= "+ recallName + "&limit=1&appid=78da9311b6649705d4159cf6966655ff"

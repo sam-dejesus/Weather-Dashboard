@@ -79,8 +79,9 @@ button{
     margin-bottom: 100px;
     
 }
+/* forecast day is the class added to the 5 day forecast elements that are created in javascript */
 .forecast-day{
     background-image: linear-gradient(to bottom, rgb(0, 180, 180),rgb(193, 218, 239) );
-    /* background-color: rgb(193, 218, 239); */
+    
     padding: 5px;
 }
