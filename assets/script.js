@@ -6,11 +6,12 @@ var tempData = $('#tempofcity')
 var humidData = $('#humidityofcity')
 var iconData = $('#icons')
 var forecast = $('#forecast')
-var date = dayjs().format('M/DD/YY')
+var currentDate = dayjs()
+var date = currentDate.format('M/DD/YY')
 var h4 = $('<h4>').text(date) 
 
 
-//
+
 var cityData = JSON.parse(localStorage.getItem('citydata')) || {};
 for (var key in cityData) {
   var city = cityData[key].name;
@@ -18,7 +19,7 @@ for (var key in cityData) {
   citysBtn.append(button);
 
 }
-//
+
 
 
 
@@ -49,10 +50,11 @@ fetch(weather)
     var temperature = data.list[i].main.temp;
     var windspeed = data.list[i].wind.speed;
     var humidity = data.list[i].main.humidity;
-    var h3 = $('<h3>').text(date)
-    var p1 = $('<p>').text(temperature)
-    var p2 = $('<p>').text(windspeed)
-    var p3 = $('<p>').text(humidity)
+    currentDate = currentDate.add(1, 'day' )
+    var h3 = $('<h3>').text(currentDate.format('M/DD/YY'))
+    var p1 = $('<p>').text('Temp: '+ temperature)
+    var p2 = $('<p>').text('Windspeed: '+windspeed+' MPH')
+    var p3 = $('<p>').text('Humidity: '+humidity+'%')
     var img = $('<img>').attr("src", "http://openweathermap.org/img/wn/" + icon + ".png")
     var div = $('<div>').addClass("forecast-day").append(h3, img, p1, p2, p3)
     forecast.append(div)
@@ -61,9 +63,9 @@ fetch(weather)
 
 iconData.attr("src", "http://openweathermap.org/img/wn/" + icon + ".png");
 nameData.text(cityName)
-tempData.text(temperature)
-windData.text(windspeed)
-humidData.text(humidity)
+tempData.text('Temp: '+ temperature)
+windData.text('Windspeed: '+windspeed+' MPH')
+humidData.text('Humidity: '+humidity+'%')
 
 nameData.append(h4)
 
@@ -81,6 +83,8 @@ localStorage.setItem('citydata', JSON.stringify(cityData));
 
 pastCityBtn.click(() => weatherbtn(latValue, lonValue))
 })
+.catch(error => {
+    console.error('Error: ', error)})
 })
 })
 
@@ -97,10 +101,11 @@ function weatherbtn(lat, lon){
         var temperature = data.list[i].main.temp;
         var windspeed = data.list[i].wind.speed;
         var humidity = data.list[i].main.humidity;
-        var h3 = $('<h3>').text(cityName)
-        var p1 = $('<p>').text(temperature)
-        var p2 = $('<p>').text(windspeed)
-        var p3 = $('<p>').text(humidity)
+        currentDate = currentDate.add(1, 'day' )
+        var h3 = $('<h3>').text(currentDate.format('M/DD/YY'))
+        var p1 = $('<p>').text('Temp: '+ temperature)
+        var p2 = $('<p>').text('Windspeed: '+windspeed+' MPH')
+        var p3 = $('<p>').text('Humidity: '+humidity+'%')
         var img = $('<img>').attr("src", "http://openweathermap.org/img/wn/" + icon + ".png")
         var div = $('<div>').addClass("forecast-day").append(h3, img, p1, p2, p3)
         forecast.append(div)
@@ -111,9 +116,9 @@ function weatherbtn(lat, lon){
     
     iconData.attr("src", "http://openweathermap.org/img/wn/" + icon + ".png");
     nameData.text(cityName)
-    tempData.text(temperature)
-    windData.text(windspeed)
-    humidData.text(humidity)
+    tempData.text('Temp: '+ temperature)
+    windData.text('Windspeed: '+windspeed+' MPH')
+    humidData.text('Humidity: '+humidity+'%')
     
         }
 
@@ -135,7 +140,7 @@ button.click(function recall() {
  var weather = "http://api.openweathermap.org/data/2.5/forecast?lat=" + latValue + "&lon=" + lonValue + "&units=imperial&cnt=6&appid=78da9311b6649705d4159cf6966655ff"
 fetch(weather)
 .then(response => response.json())
-.then(data => { //console.log(data);
+.then(data => { 
     forecast.empty()
     for (var i = 1; i <= 5; i++){
     var icon = data.list[i].weather[0].icon;
@@ -143,10 +148,11 @@ fetch(weather)
     var temperature = data.list[i].main.temp;
     var windspeed = data.list[i].wind.speed;
     var humidity = data.list[i].main.humidity;
-    var h3 = $('<h3>').text(date)
-    var p1 = $('<p>').text(temperature)
-    var p2 = $('<p>').text(windspeed)
-    var p3 = $('<p>').text(humidity)
+    currentDate = currentDate.add(1, 'day' )
+    var h3 = $('<h3>').text(currentDate.format('M/DD/YY'))
+    var p1 = $('<p>').text('Temp: '+ temperature)
+    var p2 = $('<p>').text('Windspeed: '+windspeed+' MPH')
+    var p3 = $('<p>').text('Humidity: '+humidity+'%')
     var img = $('<img>').attr("src", "http://openweathermap.org/img/wn/" + icon + ".png")
     var div = $('<div>').addClass("forecast-day").append(h3, img, p1, p2, p3)
     forecast.append(div)
@@ -155,9 +161,9 @@ fetch(weather)
 
 iconData.attr("src", "http://openweathermap.org/img/wn/" + icon + ".png");
 nameData.text(cityName)
-tempData.text(temperature)
-windData.text(windspeed)
-humidData.text(humidity)
+tempData.text('Temp: '+ temperature)
+windData.text('Windspeed: '+windspeed+' MPH')
+humidData.text('Humidity: '+humidity+'%')
 
 nameData.append(h4)
 
